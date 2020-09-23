@@ -1,0 +1,23 @@
+<template>
+  <div class="card" draggable="true">
+    {{ activity.title }}
+  </div>
+</template>
+
+<script>
+export default {
+  props: ['activity']
+}
+</script>
+
+<style scoped>
+.card {
+  display: flex;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  padding: 0.5em;
+}
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+</style>

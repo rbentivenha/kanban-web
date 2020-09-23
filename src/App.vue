@@ -1,15 +1,31 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3.0 + Vite" />
+  <Header />
+  <Board :stages="stages" :activities="activities" @update="handleUpdate" />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Header from './components/Header.vue'
+import Board from './components/kanban/Board.vue'
+import { useStore } from 'vuex'
+import { computed } from 'vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Header,
+    Board
+  },
+  setup () {
+    const store = useStore()
+    function handleUpdate ({ act, destiny }) {
+      act.stage = destiny
+      console.log('handleUpdate -> act', act)
+    }
+    return {
+      stages: computed(() => store.state.stages),
+      activities: computed(() => store.state.activities),
+      handleUpdate
+    }
   }
 }
 </script>
