@@ -1,31 +1,70 @@
 <template>
   <Header />
-  <Board :stages="stages" :activities="activities" @update="handleUpdate" />
+  <ul>
+    <li>
+      <router-link to="/">Home</router-link>
+    </li>
+    <li>
+      <router-link to="/board">Board</router-link>
+    </li>
+    <li>
+      <router-link to="/new">Nova Atividade</router-link>
+    </li>
+  </ul>
+  <Suspense>
+    <template #default>
+      <router-view :name="viewName" v-slot="{ Component, route }">
+        <keep-alive>
+          <component
+            :is="Component"
+            :key="route.name === 'repeat' ? route.path : undefined"
+          />
+        </keep-alive>
+      </router-view>
+    </template>
+    <template #fallback> Loading... </template>
+  </Suspense>
 </template>
 
 <script>
 import Header from './components/Header.vue'
-import Board from './components/kanban/Board.vue'
-import { useStore } from 'vuex'
-import { computed } from 'vue'
+import { defineComponent, inject, computed, ref } from 'vue'
+import { useRoute } from 'vue-router'
 
 export default {
   name: 'App',
   components: {
-    Header,
-    Board
+    Header
   },
   setup () {
-    const store = useStore()
-    function handleUpdate ({ act, destiny }) {
-      act.stage = destiny
-      console.log('handleUpdate -> act', act)
-    }
+    const route = useRoute()
+    const viewName = ref('default')
+    const currentLocation = computed(() => {
+      const { matched, ...rest } = route
+      return rest
+    })
     return {
-      stages: computed(() => store.state.stages),
-      activities: computed(() => store.state.activities),
-      handleUpdate
+      currentLocation,
+      viewName
     }
   }
 }
 </script>
+
+<style scoped>
+ul {
+  display: flex;
+  justify-content:center;
+  align-content:center;
+  list-style: none;
+}
+
+li { 
+  list-style-type: none;
+  text-decoration: none;
+  color: white;
+  list-style: none;
+  margin: 0px 10px;
+  float: left;
+}
+</style>

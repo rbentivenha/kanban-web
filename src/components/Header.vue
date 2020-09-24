@@ -3,13 +3,19 @@
     <h1>
       Kanban Board
     </h1>
+    <Button />
   </div>
 </template>
 
 <script>
+import Button from './Button.vue'
+
 export default {
   name: 'Header',
-  data() {
+  components: {
+    Button
+  },
+  data () {
     return {
       count: 0
     }
@@ -18,9 +24,18 @@ export default {
 </script>
 
 <style scoped>
-  .header-container {
-    background-color: dodgerblue;
-    height: 7rem;
-    width: 100%;
-  }
+h1 {
+  color: #fff;
+  margin: auto 20px;
+}
+
+.header-container {
+  border-radius: 3px;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  margin: 5px 20px;
+  background-color: rgb(76, 125, 173);
+  height: 6rem;
+}
 </style>

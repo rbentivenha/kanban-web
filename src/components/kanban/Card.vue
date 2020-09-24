@@ -13,11 +13,12 @@ export default {
 <style scoped>
 .card {
   display: flex;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   padding: 0.5em;
-}
-.card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  background-color: rgb(235, 231, 231);
+  border-radius: 3px;
+  width: 18rem;
+  margin: 4px 4px;
+  transition: opacity 0.3s, transform 0.6s cubic-bezier(0.2, 1, 0.3, 1);
 }
 </style>

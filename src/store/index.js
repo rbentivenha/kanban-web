@@ -1,5 +1,4 @@
 import { createStore } from 'vuex'
-import { indexByKey } from '../utils/activity.js'
 
 const state = {
   stages: ['To-Do', 'Doing', 'Done'],
@@ -14,9 +13,6 @@ const state = {
 }
 
 const mutations = {
-  updateActivity (state, payload) {
-    const index = state.activities.findIndex(indexByKey)
-  },
   addActivity (state, payload) {
     state.activities.push(payload)
   },
@@ -33,6 +29,11 @@ const actions = {
     const Service = new ActivityService()
     const activities = await Service.getActivities()
     commit('setActivities', activities)
+  },
+  addActivity: async ({ commit }, payload) => {
+    // const Service = new ActivityService()
+    // await Service.updateActivity({payload: payload})
+    commit('addActivity', payload)
   },
   updateActivity: async ({ commit }, {activity, destiny}) => {
     // const Service = new ActivityService()
