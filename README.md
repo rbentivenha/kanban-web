@@ -2,7 +2,7 @@
 
 > This project is a kanban todo app made with vue 3 for learning purposes
 
-**Dependêncies**
+**Dependencies**
 
 - NodeJS 12+
 - Vite
@@ -21,4 +21,4 @@ yarn build
 
 **DO NOT USE THIS FOR PRODUCTION**
 
-> Dependencies used to build this project is not ready for production yet!!
+> Dependencies used to build this project is not production ready yet!!!!
