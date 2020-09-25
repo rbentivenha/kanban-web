@@ -3,7 +3,6 @@
     <h1>
       Kanban Board
     </h1>
-    <Button />
   </div>
 </template>
 
